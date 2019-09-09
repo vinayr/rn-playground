@@ -8,15 +8,8 @@
  * @format
  */
 
-import React, {Fragment} from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+import React, { Fragment } from 'react';
+import { SafeAreaView, StyleSheet, ScrollView, View, Text, StatusBar } from 'react-native';
 
 import {
   Header,
@@ -33,9 +26,7 @@ const App = () => {
     <Fragment>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
+        <ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.scrollView}>
           <Header />
           {!usingHermes ? null : (
             <View style={styles.engine}>
@@ -46,8 +37,8 @@ const App = () => {
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>Step One</Text>
               <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-                screen and then come back to see your edits.
+                Edit <Text style={styles.highlight}>App.tsx</Text> to change this screen and then come back to see your
+                edits.
               </Text>
             </View>
             <View style={styles.sectionContainer}>
@@ -64,9 +55,7 @@ const App = () => {
             </View>
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
+              <Text style={styles.sectionDescription}>Read the docs to discover what to do next:</Text>
             </View>
             <LearnMoreLinks />
           </View>
