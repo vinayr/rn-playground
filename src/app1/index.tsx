@@ -1,20 +1,24 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { Provider } from 'react-redux';
+import { NavigationScreenProp } from 'react-navigation';
+import store from './store';
+import Main from './components/Main';
 
-const App1 = () => {
-  return (
-    <View style={styles.body}>
-      <Text>App1</Text>
-    </View>
-  );
+interface IProps {
+  // navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+  navigation: NavigationScreenProp<any>;
+}
+
+const App1 = () => (
+  <Provider store={store}>
+    <Main />
+  </Provider>
+);
+
+App1.navigationOptions = ({ navigation }: IProps) => {
+  return {
+    title: navigation.state.routeName,
+  };
 };
-
-const styles = StyleSheet.create({
-  body: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 
 export default App1;
