@@ -1,30 +1,21 @@
-import { AnyAction } from 'redux';
-import { IUser, IUserState } from '../interfaces';
-import { ADD_USERS, DELETE_USER, SELECTED_USER, CLEAR_ALL } from '../constants';
+import { User, UserState, UserAction, ADD_USERS, DELETE_USER, RESET_ALL } from '../types';
 
-type UserList = Record<IUser['id'], IUser>;
+type UserList = Record<User['id'], User>;
 
-const normalize = (users: IUser[]) => {
-  return users.reduce((obj: UserList, u: IUser) => {
+const normalize = (users: User[]) => {
+  return users.reduce((obj: UserList, u: User) => {
     obj[u.id] = u;
     return obj;
   }, {});
 };
 
-const initialState: IUserState = {
+const initialState: UserState = {
   byId: {},
   allIds: [],
-  selectedId: null,
 };
 
-export default function user(state = initialState, action: AnyAction) {
+export default function user(state = initialState, action: UserAction): UserState {
   switch (action.type) {
-    // case ADD_USERS:
-    //   return {
-    //     ...state,
-    //     byId: normalize(action.users),
-    //     allIds: action.users.map((u: User) => u.id),
-    //   };
     case ADD_USERS:
       return {
         ...state,
@@ -32,29 +23,21 @@ export default function user(state = initialState, action: AnyAction) {
           ...state.byId,
           ...normalize(action.users),
         },
-        allIds: state.allIds.concat(action.users.map((u: IUser) => u.id)),
+        allIds: state.allIds.concat(action.users.map((u: User) => u.id)),
       };
     case DELETE_USER:
-      const newState = {
+      const newState: UserState = {
         ...state,
-        // byId: { ...state.byId },
         allIds: state.allIds.filter(id => id !== action.id),
-        selectedId: null,
       };
       delete newState.byId[action.id];
       return newState;
-    case SELECTED_USER:
-      return {
-        ...state,
-        selectedId: action.id,
-      };
-    case CLEAR_ALL:
+    case RESET_ALL:
       return initialState;
     default:
       return state;
   }
 }
 
-export const getAll = (state: IUserState) => state.allIds.map(id => state.byId[id]);
-export const getById = (state: IUserState, id: number) => state.byId[id];
-export const getSelected = (state: IUserState) => (state.selectedId ? state.byId[state.selectedId] : null);
+export const getAll = (state: UserState) => state.allIds.map(id => state.byId[id]);
+export const getById = (state: UserState, id: number) => state.byId[id];

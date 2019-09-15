@@ -1,16 +1,19 @@
 import api from '../api';
-import { ThunkResult, IUser } from '../interfaces';
-import { ADD_USERS, CLEAR_ALL } from '../constants';
+import { User, UserAction, ThunkResult, ADD_USERS, RESET_ALL, DELETE_USER } from '../types';
 
-const addUsers = (users: IUser[]) => ({ type: ADD_USERS, users });
-
-export const clearAll = () => ({ type: CLEAR_ALL });
+const addUsers = (users: User[]): UserAction => ({ type: ADD_USERS, users });
+const delUser = (id: number): UserAction => ({ type: DELETE_USER, id });
+export const resetAll = (): UserAction => ({ type: RESET_ALL });
 
 export const getUsers = (): ThunkResult<void> => async dispatch => {
-  console.log('GETUSERS ACTION');
   const users = await api.getUsers();
   // console.log('users', users);
   if (users.length) {
     dispatch(addUsers(users));
   }
+};
+
+export const deleteUser = (id: number): ThunkResult<void> => async dispatch => {
+  await api.deleteUser(id);
+  dispatch(delUser(id));
 };

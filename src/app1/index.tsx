@@ -1,24 +1,40 @@
 import React from 'react';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 import { Provider } from 'react-redux';
-import { NavigationScreenProp } from 'react-navigation';
 import store from './store';
-import Main from './components/Main';
 
-interface IProps {
-  // navigation: NavigationScreenProp<NavigationState, NavigationParams>;
-  navigation: NavigationScreenProp<any>;
-}
+import Home from './components/Home';
+import UserList from './components/User/List';
+import UserProfile from './components/User/Profile';
+
+const AppNavigator = createStackNavigator(
+  {
+    Home,
+    UserList,
+    UserProfile,
+  },
+  {
+    initialRouteName: 'Home',
+    headerLayoutPreset: 'center',
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: '#f4511e',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+    },
+  },
+);
+
+const AppContainer = createAppContainer(AppNavigator);
 
 const App1 = () => (
   <Provider store={store}>
-    <Main />
+    <AppContainer />
   </Provider>
 );
-
-App1.navigationOptions = ({ navigation }: IProps) => {
-  return {
-    title: navigation.state.routeName,
-  };
-};
 
 export default App1;

@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
-import { INewUser, IUser } from './interfaces';
+import { NewUser, User } from './types';
 
 // https://github.com/axios/axios/issues/1510
 declare module 'axios' {
@@ -32,9 +32,9 @@ class Api {
     }
   };
 
-  public getUsers = () => axios.get<IUser[]>('/users');
-  public createUser = (params: INewUser) => axios.post('/users', params);
-  public updateUser = (id: number, params: INewUser) => axios.put(`/users/${id}`, params);
+  public getUsers = () => axios.get<User[]>('/users');
+  public createUser = (params: NewUser) => axios.post('/users', params);
+  public updateUser = (id: number, params: NewUser) => axios.put(`/users/${id}`, params);
   public deleteUser = (id: number) => axios.delete(`/users/${id}`);
 }
 

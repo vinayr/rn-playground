@@ -6,7 +6,7 @@ const Home = () => {
   const { navigate } = useNavigation();
   return (
     <View style={styles.body}>
-      <Button title="App1" onPress={() => navigate('App1')} />
+      <Button title="Users" onPress={() => navigate('UserList')} />
     </View>
   );
 };

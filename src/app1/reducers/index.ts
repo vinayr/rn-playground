@@ -1,7 +1,6 @@
-import { combineReducers, AnyAction } from 'redux';
-import { IStoreState } from '../interfaces';
+import { combineReducers } from 'redux';
 import user from './user';
 
-export default combineReducers<IStoreState, AnyAction>({
+export default combineReducers({
   user,
 });
