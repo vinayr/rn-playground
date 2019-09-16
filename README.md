@@ -1,5 +1,7 @@
 
 - Typescript
 - React Navigation
-- Hooks
-- Redux, Redux-Thunk, Reselect
+- App1
+  - Hooks, Redux, Redux-Thunk, Reselect
+- App2
+  - Hooks, Context
