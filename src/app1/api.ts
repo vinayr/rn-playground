@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { NewUser, User } from './types';
 
 // https://github.com/axios/axios/issues/1510
@@ -10,7 +10,7 @@ class Api {
   constructor() {
     axios.defaults.baseURL = 'https://jsonplaceholder.typicode.com';
     axios.interceptors.request.use(this.handleRequest);
-    axios.interceptors.response.use(this.handleResponse, this.handleResponseError);
+    axios.interceptors.response.use(this.handleResponse);
   }
 
   private handleRequest = (request: AxiosRequestConfig) => {
@@ -20,17 +20,6 @@ class Api {
   };
 
   private handleResponse = (response: AxiosResponse) => response.data;
-
-  private handleResponseError = (error: AxiosError) => {
-    // if (error.response) {
-    //   dispatch(showError(error.response.data.error));
-    //   return;
-    // }
-    if (error.message) {
-      // dispatch(showError(error.message));
-      console.log('API error', error.message);
-    }
-  };
 
   public getUsers = () => axios.get<User[]>('/users');
   public createUser = (params: NewUser) => axios.post('/users', params);

@@ -16,7 +16,6 @@ export interface UserState {
 }
 
 export const ADD_USERS = 'ADD_USERS';
-// export const ADD_USER = 'ADD_USER';
 export const DELETE_USER = 'DELETE_USER';
 
 interface AddUsersAction {

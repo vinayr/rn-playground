@@ -7,8 +7,7 @@ export const resetAll = (): UserAction => ({ type: RESET_ALL });
 
 export const getUsers = (): ThunkResult<void> => async dispatch => {
   const users = await api.getUsers();
-  // console.log('users', users);
-  if (users.length) {
+  if (users && users.length) {
     dispatch(addUsers(users));
   }
 };

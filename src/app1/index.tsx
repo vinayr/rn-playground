@@ -4,9 +4,9 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { Provider } from 'react-redux';
 import store from './store';
 
-import Home from './components/Home';
-import UserList from './components/User/List';
-import UserProfile from './components/User/Profile';
+import Home from './components/home';
+import UserList from './components/user/list';
+import UserProfile from './components/user/profile';
 
 const AppNavigator = createStackNavigator(
   {

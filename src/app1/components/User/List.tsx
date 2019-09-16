@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { StyleSheet, SafeAreaView, Text, FlatList, TouchableOpacity } from 'react-native';
 import { NavigationScreenComponent, NavigationScreenProps } from 'react-navigation';
 import { useNavigation } from 'react-navigation-hooks';
@@ -6,6 +6,9 @@ import { connect, useDispatch } from 'react-redux';
 import { AppState, User } from '../../types';
 import { selectUsers } from '../../selectors';
 import { getUsers, resetAll } from '../../actions';
+import Loading from '../common/loading';
+import Empty from '../common/empty';
+import Error from '../common/error';
 
 interface ItemProps {
   user: User;
@@ -33,16 +36,38 @@ interface ListProps extends NavigationScreenProps {
 const List: NavigationScreenComponent<{}, {}, ListProps> = ({ users }) => {
   console.log('UserList', users.length);
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+
+  const fetchUsers = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      await dispatch(getUsers());
+      setIsError(false);
+    } catch (error) {
+      console.log('getUsers error', error.message);
+      setIsError(true);
+    }
+    setIsLoading(false);
+  }, [dispatch]);
 
   useEffect(() => {
-    dispatch(getUsers());
+    fetchUsers();
     return () => {
       dispatch(resetAll());
     };
-  }, [dispatch]);
+  }, [dispatch, fetchUsers]);
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  if (isError) {
+    return <Error onPress={fetchUsers} />;
+  }
 
   if (!users.length) {
-    return null;
+    return <Empty text="No Users" />;
   }
 
   return (

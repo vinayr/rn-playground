@@ -1,13 +1,13 @@
 import React from 'react';
-import { StyleSheet, View, Button } from 'react-native';
+import { StyleSheet, SafeAreaView, Button } from 'react-native';
 import { useNavigation } from 'react-navigation-hooks';
 
 const Home = () => {
   const { navigate } = useNavigation();
   return (
-    <View style={styles.body}>
+    <SafeAreaView style={styles.body}>
       <Button title="Users" onPress={() => navigate('UserList')} />
-    </View>
+    </SafeAreaView>
   );
 };
 
