@@ -5,7 +5,7 @@ import { useNavigation } from 'react-navigation-hooks';
 import { connect, useDispatch } from 'react-redux';
 import { AppState, User } from '../../types';
 import { selectUsers } from '../../selectors';
-import { getUsers, resetAll } from '../../actions';
+import { fetchUsers, resetAll } from '../../actions';
 import Loading from '../common/loading';
 import Empty from '../common/empty';
 import Error from '../common/error';
@@ -39,10 +39,10 @@ const List: NavigationScreenComponent<{}, {}, ListProps> = ({ users }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
-  const fetchUsers = useCallback(async () => {
+  const getUsers = useCallback(async () => {
     setIsLoading(true);
     try {
-      await dispatch(getUsers());
+      await dispatch(fetchUsers());
       setIsError(false);
     } catch (error) {
       console.log('getUsers error', error.message);
@@ -52,11 +52,11 @@ const List: NavigationScreenComponent<{}, {}, ListProps> = ({ users }) => {
   }, [dispatch]);
 
   useEffect(() => {
-    fetchUsers();
+    getUsers();
     return () => {
       dispatch(resetAll());
     };
-  }, [dispatch, fetchUsers]);
+  }, [dispatch, getUsers]);
 
   if (isLoading) {
     return <Loading />;
