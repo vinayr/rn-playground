@@ -9,19 +9,15 @@ import api from '../api';
 // context
 
 type Dispatch = (action: UserAction) => void;
-type ProviderProps = { children: React.ReactNode };
-
-interface ContextProps {
-  state: UserState;
-  dispatch: Dispatch;
-}
+type ContextProps = { state: UserState; dispatch: Dispatch };
+type ProviderProps = React.PropsWithChildren<{}>;
 
 const UserStateContext = createContext({} as ContextProps);
 
-export const UserProvider = ({ children }: ProviderProps) => {
+export const UserProvider = (props: ProviderProps) => {
   const [state, dispatch] = useReducer(userReducer, initialState);
   const value = { state, dispatch };
-  return <UserStateContext.Provider value={value}>{children}</UserStateContext.Provider>;
+  return <UserStateContext.Provider value={value} {...props} />;
 };
 
 export const useUserState = () => {
