@@ -3,8 +3,10 @@
 
 import React, { createContext, useContext, useReducer } from 'react';
 import { UserState, UserAction, ADD_USERS, DELETE_USER, RESET_ALL } from '../types';
-import { initialState, userReducer } from '../reducers/user';
+import { initialState, userReducer, getAll } from '../reducers/user';
 import api from '../api';
+
+// context
 
 type Dispatch = (action: UserAction) => void;
 type ProviderProps = { children: React.ReactNode };
@@ -30,8 +32,10 @@ export const useUserState = () => {
   return context;
 };
 
-export const getUsers = async (dispatch: Dispatch) => {
-  const users = await api.getUsers();
+// actions
+
+export const fetchUsers = async (dispatch: Dispatch) => {
+  const users = await api.fetchUsers();
   if (users && users.length) {
     dispatch({ type: ADD_USERS, users });
   }
@@ -44,4 +48,10 @@ export const deleteUser = async (dispatch: Dispatch, id: number) => {
 
 export const resetAll = (dispatch: Dispatch) => {
   dispatch({ type: RESET_ALL });
+};
+
+// getters
+
+export const getUsers = (state: UserState) => {
+  return getAll(state);
 };

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { StyleSheet, SafeAreaView, Text, FlatList, TouchableOpacity } from 'react-native';
 import { useNavigation } from 'react-navigation-hooks';
 import { User } from '../../types';
-import { useUserState, getUsers, resetAll } from '../../contexts/user';
+import { useUserState, fetchUsers, resetAll, getUsers } from '../../contexts/user';
 
 interface ItemProps {
   user: User;
@@ -25,13 +25,11 @@ const Item: React.FC<ItemProps> = ({ user }) => {
 
 const List = () => {
   const { state, dispatch } = useUserState();
-  const { byId, allIds } = state;
-
-  const users = allIds.map(id => byId[id]);
+  const users = getUsers(state);
   console.log('UserList', users.length);
 
   useEffect(() => {
-    getUsers(dispatch);
+    fetchUsers(dispatch);
     return () => {
       resetAll(dispatch);
     };

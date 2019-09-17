@@ -21,7 +21,7 @@ class Api {
 
   private handleResponse = (response: AxiosResponse) => response.data;
 
-  public getUsers = () => axios.get<User[]>('/users');
+  public fetchUsers = () => axios.get<User[]>('/users');
   public createUser = (params: NewUser) => axios.post('/users', params);
   public updateUser = (id: number, params: NewUser) => axios.put(`/users/${id}`, params);
   public deleteUser = (id: number) => axios.delete(`/users/${id}`);
