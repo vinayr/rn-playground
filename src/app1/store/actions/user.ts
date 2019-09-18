@@ -1,5 +1,5 @@
-import api from '../api';
-import { User, UserAction, ThunkResult, ADD_USERS, RESET_ALL, DELETE_USER } from '../types';
+import api from '../../services/api';
+import { User, UserAction, ThunkResult, ADD_USERS, RESET_ALL, DELETE_USER } from '../../types';
 
 const addUsers = (users: User[]): UserAction => ({ type: ADD_USERS, users });
 const delUser = (id: number): UserAction => ({ type: DELETE_USER, id });

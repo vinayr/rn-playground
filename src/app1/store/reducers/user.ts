@@ -1,4 +1,4 @@
-import { User, UserState, UserAction, ADD_USERS, DELETE_USER, RESET_ALL } from '../types';
+import { User, UserState, UserAction, ADD_USERS, DELETE_USER, RESET_ALL } from '../../types';
 
 type UserList = Record<User['id'], User>;
 

@@ -4,11 +4,11 @@ import { NavigationScreenComponent, NavigationScreenProps } from 'react-navigati
 import { useNavigation } from 'react-navigation-hooks';
 import { connect, useDispatch } from 'react-redux';
 import { AppState, User } from '../../types';
-import { selectUsers } from '../../selectors';
-import { fetchUsers, resetAll } from '../../actions';
-import Loading from '../common/loading';
-import Empty from '../common/empty';
-import Error from '../common/error';
+import { selectUsers } from '../../store/selectors';
+import { fetchUsers, resetAll } from '../../store/actions';
+import Loading from '../../components/loading';
+import Empty from '../../components/empty';
+import Error from '../../components/error';
 
 interface ItemProps {
   user: User;
