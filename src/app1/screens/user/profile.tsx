@@ -3,9 +3,9 @@ import { StyleSheet, View, Text, Button } from 'react-native';
 import { NavigationScreenComponent } from 'react-navigation';
 import { useNavigation, useNavigationParam } from 'react-navigation-hooks';
 import { useDispatch } from 'react-redux';
-import { User } from '../../types';
-import { deleteUser } from '../../store/actions';
-import Loading from '../../components/loading';
+import { User } from 'app1/types';
+import { deleteUser } from 'app1/store/actions';
+import Loading from 'app1/components/loading';
 
 const Profile: NavigationScreenComponent = () => {
   console.log('Profile');

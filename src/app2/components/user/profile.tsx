@@ -2,8 +2,8 @@ import React from 'react';
 import { StyleSheet, SafeAreaView, View, Text, Button } from 'react-native';
 import { NavigationScreenComponent } from 'react-navigation';
 import { useNavigation, useNavigationParam } from 'react-navigation-hooks';
-import { User } from '../../types';
-import { useUserState, deleteUser } from '../../contexts/user';
+import { User } from 'app2/types';
+import { useUserState, deleteUser } from 'app2/contexts/user';
 
 const Profile: NavigationScreenComponent = () => {
   console.log('Profile');

@@ -3,12 +3,12 @@ import { StyleSheet, SafeAreaView, Text, FlatList, TouchableOpacity } from 'reac
 import { NavigationScreenComponent, NavigationScreenProps } from 'react-navigation';
 import { useNavigation } from 'react-navigation-hooks';
 import { connect, useDispatch } from 'react-redux';
-import { AppState, User } from '../../types';
-import { selectUsers } from '../../store/selectors';
-import { fetchUsers, resetAll } from '../../store/actions';
-import Loading from '../../components/loading';
-import Empty from '../../components/empty';
-import Error from '../../components/error';
+import { AppState, User } from 'app1/types';
+import { selectUsers } from 'app1/store/selectors';
+import { fetchUsers, resetAll } from 'app1/store/actions';
+import Loading from 'app1/components/loading';
+import Empty from 'app1/components/empty';
+import Error from 'app1/components/error';
 
 interface ItemProps {
   user: User;
