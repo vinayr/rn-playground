@@ -19,6 +19,10 @@
 		2DCD954D1E0B4F2C00145EB5 /* RNPlaygroundTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* RNPlaygroundTests.m */; };
 		73B4B5029D1C71FC5AC8ADA5 /* libPods-RNPlaygroundTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 241FFD557F4399E1F142DE87 /* libPods-RNPlaygroundTests.a */; };
 		866D7FE18D79B8F28E118049 /* libPods-RNPlayground-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D47C56C7EA4A0AFBFF8519FD /* libPods-RNPlayground-tvOSTests.a */; };
+		A10F53742333F49C00331DEB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A10F53732333F49C00331DEB /* GoogleService-Info.plist */; };
+		A10F53752333F49C00331DEB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A10F53732333F49C00331DEB /* GoogleService-Info.plist */; };
+		A10F53762333F49C00331DEB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A10F53732333F49C00331DEB /* GoogleService-Info.plist */; };
+		A10F53772333F49C00331DEB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A10F53732333F49C00331DEB /* GoogleService-Info.plist */; };
 		CDB178357447E082DA98D77F /* libPods-RNPlayground-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC3136745ACA2DD0B483C7FF /* libPods-RNPlayground-tvOS.a */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +64,7 @@
 		657AB321B0D8D490BED69A90 /* libPods-RNPlayground.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNPlayground.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8013CE7DC0A5693227F438E2 /* Pods-RNPlayground-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNPlayground-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-RNPlayground-tvOS/Pods-RNPlayground-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		876A207EDD4A85703FA4D70E /* Pods-RNPlaygroundTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNPlaygroundTests.debug.xcconfig"; path = "Target Support Files/Pods-RNPlaygroundTests/Pods-RNPlaygroundTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A10F53732333F49C00331DEB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A9ECD076F5FE92205D625634 /* Pods-RNPlayground.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNPlayground.debug.xcconfig"; path = "Target Support Files/Pods-RNPlayground/Pods-RNPlayground.debug.xcconfig"; sourceTree = "<group>"; };
 		CC7AAA9F08D1B251E14CFB19 /* Pods-RNPlayground-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNPlayground-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-RNPlayground-tvOSTests/Pods-RNPlayground-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		D47C56C7EA4A0AFBFF8519FD /* libPods-RNPlayground-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNPlayground-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,6 +130,7 @@
 		13B07FAE1A68108700A75B9A /* RNPlayground */ = {
 			isa = PBXGroup;
 			children = (
+				A10F53732333F49C00331DEB /* GoogleService-Info.plist */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -332,6 +338,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A10F53752333F49C00331DEB /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +348,7 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				A10F53742333F49C00331DEB /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,6 +357,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */,
+				A10F53762333F49C00331DEB /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,6 +365,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A10F53772333F49C00331DEB /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

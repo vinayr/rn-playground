@@ -27,6 +27,9 @@ target 'RNPlayground' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
+  pod 'Firebase/Core', '~> 6.3.0'
+  pod 'Firebase/Auth', '~> 6.3.0'
+
   target 'RNPlaygroundTests' do
     inherit! :search_paths
     # Pods for testing
