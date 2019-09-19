@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { StyleSheet, SafeAreaView, Text, FlatList, TouchableOpacity } from 'react-native';
 import { useNavigation } from 'react-navigation-hooks';
-import { User } from '../../types';
-import { useUserState, fetchUsers, resetAll, getUsers } from '../../contexts/user';
+import { User } from 'app2/types';
+import { useUserState, fetchUsers, resetAll, getUsers } from 'app2/contexts/user';
 
 interface ItemProps {
   user: User;

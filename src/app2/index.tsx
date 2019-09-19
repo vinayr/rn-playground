@@ -1,11 +1,11 @@
 import React from 'react';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-import { UserProvider } from './contexts/user';
+import { UserProvider } from 'app2/contexts/user';
 
-import Home from './components/home';
-import UserList from './components/user/list';
-import UserProfile from './components/user/profile';
+import Home from 'app2/components/home';
+import UserList from 'app2/components/user/list';
+import UserProfile from 'app2/components/user/profile';
 
 const AppNavigator = createStackNavigator(
   {

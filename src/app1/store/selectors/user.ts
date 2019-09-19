@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
-import { AppState } from '../../types';
-import * as fromUser from '../reducers/user';
+import { AppState } from 'app1/types';
+import * as fromUser from 'app1/store/reducers/user';
 
 const getId = (_: AppState, id: number) => id;
 const user = (state: AppState) => state.user;

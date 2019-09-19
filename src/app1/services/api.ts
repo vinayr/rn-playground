@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-import { NewUser, User } from '../types';
+import { NewUser, User } from 'app1/types';
 
 // https://github.com/axios/axios/issues/1510
 declare module 'axios' {

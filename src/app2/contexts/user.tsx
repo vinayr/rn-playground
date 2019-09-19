@@ -2,9 +2,9 @@
 // https://gist.github.com/sw-yx/f18fe6dd4c43fddb3a4971e80114a052
 
 import React, { createContext, useContext, useReducer } from 'react';
-import { UserState, UserAction, ADD_USERS, DELETE_USER, RESET_ALL } from '../types';
-import { initialState, userReducer, getAll } from '../reducers/user';
-import api from '../api';
+import { UserState, UserAction, ADD_USERS, DELETE_USER, RESET_ALL } from 'app2/types';
+import { initialState, userReducer, getAll } from 'app2/reducers/user';
+import api from 'app2/api';
 
 // context
 
