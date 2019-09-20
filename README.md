@@ -19,3 +19,9 @@ npm start
 react-native run-android
 xed -b ios
 ```
+
+firebase
+```
+cp /path/to/google-services.json android/app/
+cp /path/to/GoogleService-Info.plist ios/
+```
