@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { StyleSheet, SafeAreaView, Button, Text, YellowBox } from 'react-native';
+import React, { useEffect } from 'react';
+import { StyleSheet, SafeAreaView, Button, Text } from 'react-native';
 // import { useNavigation } from 'react-navigation-hooks';
 import firebase from 'react-native-firebase';
 
 const Home = () => {
   // const { navigate } = useNavigation();
-  useState(() => {
+  useEffect(() => {
     firebase
       .auth()
       .signInAnonymously()
@@ -14,7 +14,7 @@ const Home = () => {
           console.log('default app user ->', credential.user.toJSON());
         }
       });
-  });
+  }, []);
 
   return (
     <SafeAreaView style={styles.body}>
