@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, Button } from 'react-native';
-import { NavigationScreenComponent } from 'react-navigation';
+import { NavigationStackScreenComponent } from 'react-navigation-stack';
 import { useNavigation, useNavigationParam } from 'react-navigation-hooks';
 import { useDispatch } from 'react-redux';
 import { User } from 'app1/types';
 import { deleteUser } from 'app1/store/actions';
 import Loading from 'app1/components/loading';
 
-const Profile: NavigationScreenComponent = () => {
+const Profile: NavigationStackScreenComponent = () => {
   console.log('Profile');
   const user: User = useNavigationParam('user');
   const { goBack } = useNavigation();

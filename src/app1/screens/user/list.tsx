@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { StyleSheet, SafeAreaView, Text, FlatList, TouchableOpacity } from 'react-native';
-import { NavigationScreenComponent, NavigationScreenProps } from 'react-navigation';
 import { useNavigation } from 'react-navigation-hooks';
 import { connect, useDispatch } from 'react-redux';
 import { AppState, User } from 'app1/types';
@@ -14,7 +13,7 @@ interface ItemProps {
   user: User;
 }
 
-const Item: React.FC<ItemProps> = ({ user }) => {
+const Item: FC<ItemProps> = ({ user }) => {
   console.log('User');
   const { navigate } = useNavigation();
 
@@ -29,34 +28,35 @@ const Item: React.FC<ItemProps> = ({ user }) => {
   );
 };
 
-interface ListProps extends NavigationScreenProps {
+interface ListProps {
   users: User[];
 }
 
-const List: NavigationScreenComponent<{}, {}, ListProps> = ({ users }) => {
+const List = (props: ListProps) => {
+  const { users } = props;
   console.log('UserList', users.length);
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
-  const getUsers = useCallback(async () => {
-    setIsLoading(true);
-    try {
-      await dispatch(fetchUsers());
-      setIsError(false);
-    } catch (error) {
-      console.log('getUsers error', error.message);
-      setIsError(true);
-    }
-    setIsLoading(false);
-  }, [dispatch]);
-
   useEffect(() => {
+    const getUsers = async () => {
+      setIsLoading(true);
+      try {
+        await dispatch(fetchUsers());
+        setIsError(false);
+      } catch (error) {
+        console.log('getUsers error', error.message);
+        setIsError(true);
+      }
+      setIsLoading(false);
+    };
+
     getUsers();
     return () => {
       dispatch(resetAll());
     };
-  }, [dispatch, getUsers]);
+  }, [dispatch]);
 
   if (isLoading) {
     return <Loading />;

@@ -1,5 +1,5 @@
 import { createStackNavigator } from 'react-navigation-stack';
-
+import { Colors } from 'app1/styles';
 import Home from 'app1/screens/home';
 import UserList from 'app1/screens/user/list';
 import UserProfile from 'app1/screens/user/profile';
@@ -15,9 +15,9 @@ const AppNavigator = createStackNavigator(
     headerLayoutPreset: 'center',
     defaultNavigationOptions: {
       headerStyle: {
-        backgroundColor: '#f4511e',
+        backgroundColor: Colors.ORANGE,
       },
-      headerTintColor: '#fff',
+      headerTintColor: Colors.WHITE,
       headerTitleStyle: {
         fontWeight: 'bold',
       },
