@@ -1,14 +1,12 @@
 import { createStackNavigator } from 'react-navigation-stack';
 import { Colors } from 'app1/styles';
 import Home from 'app1/screens/home';
-import UserList from 'app1/screens/user/list';
-import UserProfile from 'app1/screens/user/profile';
+import Users from 'app1/screens/users';
 
 const AppNavigator = createStackNavigator(
   {
     Home,
-    UserList,
-    UserProfile,
+    Users,
   },
   {
     initialRouteName: 'Home',

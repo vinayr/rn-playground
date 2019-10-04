@@ -12,7 +12,7 @@ export const fetchUsers = (): ThunkResult<void> => async dispatch => {
   }
 };
 
-export const deleteUser = (id: number): ThunkResult<void> => async dispatch => {
-  await api.deleteUser(id);
+export const deleteUser = (id: number): ThunkResult<void> => dispatch => {
+  api.deleteUser(id);
   dispatch(delUser(id));
 };

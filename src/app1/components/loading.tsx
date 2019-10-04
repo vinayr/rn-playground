@@ -1,19 +1,22 @@
 import React from 'react';
-import { StyleSheet, SafeAreaView, ActivityIndicator } from 'react-native';
+import { StyleSheet, ActivityIndicator } from 'react-native';
+import { SafeAreaView } from 'react-navigation';
+import { Colors } from 'app1/styles';
 
 const Loading = () => {
   return (
-    <SafeAreaView style={styles.body}>
-      <ActivityIndicator size="large" color="#0000ff" />
+    <SafeAreaView style={styles.container}>
+      <ActivityIndicator size="large" color={Colors.ORANGE} />
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  body: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+  container: {
+    position: 'absolute',
+    height: '100%',
+    width: '100%',
+    paddingTop: 50,
   },
 });
 

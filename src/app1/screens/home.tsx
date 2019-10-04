@@ -1,12 +1,13 @@
 import React from 'react';
-import { StyleSheet, SafeAreaView, Button } from 'react-native';
+import { StyleSheet, Button } from 'react-native';
+import { SafeAreaView } from 'react-navigation';
 import { useNavigation } from 'react-navigation-hooks';
 
 const Home = () => {
   const { navigate } = useNavigation();
   return (
-    <SafeAreaView style={styles.body}>
-      <Button title="Users" onPress={() => navigate('UserList')} />
+    <SafeAreaView style={styles.container}>
+      <Button title="Users" onPress={() => navigate('Users')} />
     </SafeAreaView>
   );
 };
@@ -16,7 +17,7 @@ Home.navigationOptions = {
 };
 
 const styles = StyleSheet.create({
-  body: {
+  container: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',

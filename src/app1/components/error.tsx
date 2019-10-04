@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, SafeAreaView, Text, Button } from 'react-native';
+import { StyleSheet, Text, Button } from 'react-native';
+import { SafeAreaView } from 'react-navigation';
 
 interface Props {
   onPress: () => void;
@@ -7,7 +8,7 @@ interface Props {
 
 const Error: React.FC<Props> = ({ onPress }) => {
   return (
-    <SafeAreaView style={styles.body}>
+    <SafeAreaView style={styles.container}>
       <Text style={styles.text}>Error</Text>
       <Button title="Try Again" onPress={onPress} />
     </SafeAreaView>
@@ -15,7 +16,7 @@ const Error: React.FC<Props> = ({ onPress }) => {
 };
 
 const styles = StyleSheet.create({
-  body: {
+  container: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',

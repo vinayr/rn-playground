@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, SafeAreaView, Text } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
+import { SafeAreaView } from 'react-navigation';
 
 interface Props {
   text: string;
@@ -7,14 +8,14 @@ interface Props {
 
 const Empty: React.FC<Props> = ({ text }) => {
   return (
-    <SafeAreaView style={styles.body}>
+    <SafeAreaView style={styles.container}>
       <Text style={styles.text}>{text}</Text>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  body: {
+  container: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
