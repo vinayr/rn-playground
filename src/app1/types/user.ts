@@ -1,5 +1,3 @@
-import { ResetAllAction } from './common';
-
 export interface NewUser {
   email: string;
   name: string;
@@ -10,9 +8,12 @@ export interface User extends NewUser {
   id: number;
 }
 
+export type UsersById = Record<User['id'], User>;
+export type UserIds = User['id'][];
+
 export interface UserState {
-  byId: { [id: number]: User };
-  allIds: number[];
+  byId: UsersById;
+  allIds: UserIds;
 }
 
 export const ADD_USERS = 'ADD_USERS';
@@ -23,9 +24,9 @@ interface AddUsersAction {
   users: User[];
 }
 
-interface DeleteUserAction {
+export interface DeleteUserAction {
   type: typeof DELETE_USER;
-  id: number;
+  id: User['id'];
 }
 
-export type UserAction = AddUsersAction | DeleteUserAction | ResetAllAction;
+export type UserAction = AddUsersAction | DeleteUserAction;

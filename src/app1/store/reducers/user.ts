@@ -1,9 +1,7 @@
-import { User, UserState, UserAction, ADD_USERS, DELETE_USER, RESET_ALL } from 'app1/types';
-
-type UserList = Record<User['id'], User>;
+import { User, UserState, UsersById, UserAction, ADD_USERS, DELETE_USER } from 'app1/types';
 
 const normalize = (users: User[]) => {
-  return users.reduce((obj: UserList, u: User) => {
+  return users.reduce((obj: UsersById, u: User) => {
     obj[u.id] = u;
     return obj;
   }, {});
@@ -23,17 +21,13 @@ export default function user(state = initialState, action: UserAction): UserStat
           ...state.byId,
           ...normalize(action.users),
         },
-        allIds: state.allIds.concat(action.users.map((u: User) => u.id)),
+        allIds: [...new Set(state.allIds.concat(action.users.map(u => u.id)))],
       };
     case DELETE_USER:
-      const newState: UserState = {
+      return {
         ...state,
         allIds: state.allIds.filter(id => id !== action.id),
       };
-      delete newState.byId[action.id];
-      return newState;
-    case RESET_ALL:
-      return initialState;
     default:
       return state;
   }

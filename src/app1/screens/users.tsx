@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import { NavigationStackScreenComponent } from 'react-navigation-stack';
@@ -6,17 +6,15 @@ import { useNavigation } from 'react-navigation-hooks';
 import { useDispatch, useSelector } from 'react-redux';
 import { User } from 'app1/types';
 import { selectUsers } from 'app1/store/selectors';
-import { fetchUsers, deleteUser, resetAll } from 'app1/store/actions';
-import Loading from 'app1/components/loading';
+import { deleteUser } from 'app1/store/actions';
 import Empty from 'app1/components/empty';
-import Error from 'app1/components/error';
 
 interface ItemProps {
   user: User;
 }
 
 const Item = (props: ItemProps) => {
-  console.log('User');
+  // console.log('User');
   const { user } = props;
   const dispatch = useDispatch();
   const [isSelected, setIsSelected] = useState(false);
@@ -49,40 +47,14 @@ const Item = (props: ItemProps) => {
 const List: NavigationStackScreenComponent = () => {
   const users = useSelector(selectUsers);
   console.log('UserList', users.length);
-  const dispatch = useDispatch();
   const navigation = useNavigation();
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-
-  const getUsers = useCallback(async () => {
-    setIsLoading(true);
-    try {
-      await dispatch(fetchUsers());
-      setIsError(false);
-    } catch (error) {
-      console.log('getUsers error', error.message);
-      setIsError(true);
-    }
-    setIsLoading(false);
-  }, [dispatch]);
-
-  useEffect(() => {
-    getUsers();
-    return () => {
-      dispatch(resetAll());
-    };
-  }, [getUsers, dispatch]);
 
   useEffect(() => {
     navigation.setParams({ userCount: users.length });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [users.length]);
 
-  if (isError) {
-    return <Error onPress={getUsers} />;
-  }
-
-  if (!isLoading && !users.length) {
+  if (!users.length) {
     return <Empty text="No Users" />;
   }
 
@@ -93,7 +65,6 @@ const List: NavigationStackScreenComponent = () => {
         renderItem={({ item }) => <Item user={item} />}
         keyExtractor={item => `${item.id}`}
       />
-      {isLoading && <Loading />}
     </SafeAreaView>
   );
 };
