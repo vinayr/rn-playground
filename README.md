@@ -14,8 +14,9 @@ setup
 ```bash
 git clone https://github.com/vinayr/rn-playground
 cd rn-playground
+yarn install
 cd ios && pod install && cd ..
-npm start
+yarn start
 react-native run-android
 react-native run-ios # or 'xed -b ios'
 ```
