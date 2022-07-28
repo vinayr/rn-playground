@@ -1,12 +1,11 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import store from './store';
-import Navigator from './navigation';
+import Navigator from './navigation/Navigator';
+import { UserProvider } from './screens/users/context';
 
-const App1 = () => (
-  <Provider store={store}>
+const App = () => (
+  <UserProvider>
     <Navigator />
-  </Provider>
+  </UserProvider>
 );
 
-export default App1;
+export default App;
