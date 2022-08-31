@@ -23,20 +23,24 @@ const Home = ({ navigation }: RootStackScreenProps<'Home'>) => {
     return <Loading />;
   }
 
+  const onPressUsers = async () => {
+    navigation.navigate('UserList');
+  };
+
+  const onPressPosts = () => {
+    navigation.navigate('PostList');
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.button}>
-        <Button title="Users" onPress={() => navigation.navigate('UserList')} />
+        <Button title="Users" onPress={onPressUsers} />
       </View>
       <View style={styles.button}>
-        <Button title="Posts" onPress={() => navigation.navigate('PostList')} />
+        <Button title="Posts" onPress={onPressPosts} />
       </View>
     </SafeAreaView>
   );
-};
-
-Home.navigationOptions = {
-  title: 'Home',
 };
 
 const styles = StyleSheet.create({
