@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { StyleSheet, SafeAreaView, View, Button } from 'react-native';
-import { RootStackScreenProps } from '@/app2/navigation/types';
-import { useAppDispatch, useAppSelector } from '@/app2/app/store';
-import { postActions, postSelectors } from '@/app2/screens/posts/redux';
-import { userActions, userSelectors } from '@/app2/screens/users/redux';
-import Loading from '@/app2/components/Loading';
+import { RootStackScreenProps } from '@src/app2/navigation/types';
+import { useAppDispatch, useAppSelector } from '@src/app2/app/store';
+import { postActions, postSelectors } from '@src/app2/screens/posts/redux';
+import { userActions, userSelectors } from '@src/app2/screens/users/redux';
+import Loading from '@src/app2/components/Loading';
 
 const Home = ({ navigation }: RootStackScreenProps<'Home'>) => {
   const dispatch = useAppDispatch();
@@ -16,7 +16,7 @@ const Home = ({ navigation }: RootStackScreenProps<'Home'>) => {
       await dispatch(userActions.getUsers());
       await dispatch(postActions.getPosts());
     }
-    loadData();
+    // loadData();
   }, [dispatch]);
 
   if (loadingPosts || loadingUsers) {

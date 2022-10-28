@@ -10,7 +10,7 @@
     /* for module resolver */
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@src/*": ["src/*"]
     }
   }
 }

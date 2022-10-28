@@ -1,7 +1,7 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import { useDispatch, useSelector, TypedUseSelectorHook } from 'react-redux';
-import postsReducer from '@/app2/screens/posts/redux';
-import usersReducer from '@/app2/screens/users/redux';
+import postsReducer from '@src/app2/screens/posts/redux';
+import usersReducer from '@src/app2/screens/users/redux';
 
 const store = configureStore({
   reducer: {
@@ -13,7 +13,8 @@ const store = configureStore({
       immutableCheck: false,
       serializableCheck: false,
     });
-    if (__DEV__) {
+    // @ts-ignore
+    if (__DEV__ && !process.env.JEST_WORKER_ID) {
       const createDebugger = require('redux-flipper').default;
       middleware.push(createDebugger());
     }

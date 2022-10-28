@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, SafeAreaView, ActivityIndicator } from 'react-native';
-import { Colors } from '@/app2/themes';
+import { Colors } from '@src/app2/themes';
 
 const Loading = () => {
   return (

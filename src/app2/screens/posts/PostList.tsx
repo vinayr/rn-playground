@@ -1,9 +1,9 @@
 import React, { memo, useMemo, useState } from 'react';
 import { StyleSheet, SafeAreaView, View, Text, FlatList, TouchableOpacity } from 'react-native';
-import { useAppSelector } from '@/app2/app/store';
-import { postSelectors } from '@/app2/screens/posts/redux';
-import { userSelectors } from '@/app2/screens/users/redux';
-import Empty from '@/app2/components/Empty';
+import { useAppSelector } from '@src/app2/app/store';
+import { postSelectors } from '@src/app2/screens/posts/redux';
+import { userSelectors } from '@src/app2/screens/users/redux';
+import Empty from '@src/app2/components/Empty';
 
 interface ItemProps {
   postId: string;

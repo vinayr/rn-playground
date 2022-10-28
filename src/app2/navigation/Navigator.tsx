@@ -3,9 +3,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator, NativeStackNavigationOptions as NSNO } from '@react-navigation/native-stack';
 import { RootStackParamList } from './types';
 
-import Home from '@/app2/screens/home/Home';
-import UserList from '@/app2/screens/users/UserList';
-import PostList from '@/app2/screens/posts/PostList';
+import Home from '@src/app2/screens/home/Home';
+import UserList from '@src/app2/screens/users/UserList';
+import PostList from '@src/app2/screens/posts/PostList';
 
 const title = (headerTitle: string): NSNO => ({ headerTitle });
 

@@ -1,9 +1,9 @@
 import React, { memo, useMemo, useState, useLayoutEffect } from 'react';
 import { StyleSheet, SafeAreaView, View, Text, FlatList, TouchableOpacity } from 'react-native';
-import { RootStackScreenProps } from '@/app2/navigation/types';
-import { useAppDispatch, useAppSelector } from '@/app2/app/store';
-import { userActions, userSelectors } from '@/app2/screens/users/redux';
-import Empty from '@/app2/components/Empty';
+import { RootStackScreenProps } from '@src/app2/navigation/types';
+import { useAppDispatch, useAppSelector } from '@src/app2/app/store';
+import { userActions, userSelectors } from '@src/app2/screens/users/redux';
+import Empty from '@src/app2/components/Empty';
 
 interface ItemProps {
   userId: string;

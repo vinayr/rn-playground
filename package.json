@@ -39,17 +39,7 @@
     "react-native-flipper": "^0.156.0",
     "react-test-renderer": "18.0.0",
     "redux-flipper": "^2.0.2",
+    "ts-jest": "26",
     "typescript": "^4.4.4"
-  },
-  "jest": {
-    "preset": "react-native",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ]
   }
 }

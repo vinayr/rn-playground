@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction, createSelector } from '@reduxjs/toolkit';
-import { Thunk, RootState } from '@/app2/app/store';
-import { postActions } from '@/app2/screens/posts/redux';
+import { Thunk, RootState } from '@src/app2/app/store';
+import { postActions } from '@src/app2/screens/posts/redux';
 import { User, UserState } from './types';
 import * as api from './api';
 
