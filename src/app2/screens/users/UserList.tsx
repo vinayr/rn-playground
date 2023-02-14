@@ -1,5 +1,6 @@
 import React, { memo, useMemo, useState, useLayoutEffect } from 'react';
-import { StyleSheet, SafeAreaView, View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { RootStackScreenProps } from '@src/app2/navigation/types';
 import { useAppDispatch, useAppSelector } from '@src/app2/app/store';
 import { userActions, userSelectors } from '@src/app2/screens/users/redux';

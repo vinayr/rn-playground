@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, SafeAreaView, ActivityIndicator } from 'react-native';
+import { StyleSheet, ActivityIndicator } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Colors } from '@src/app2/themes';
 
 const Loading = () => {

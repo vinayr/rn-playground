@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, SafeAreaView, View, Button } from 'react-native';
+import { StyleSheet, View, Button } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { RootStackScreenProps } from '@src/app2/navigation/types';
 import { useAppDispatch, useAppSelector } from '@src/app2/app/store';
 import { postActions, postSelectors } from '@src/app2/screens/posts/redux';

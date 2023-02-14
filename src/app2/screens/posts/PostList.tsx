@@ -1,5 +1,6 @@
 import React, { memo, useMemo, useState } from 'react';
-import { StyleSheet, SafeAreaView, View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAppSelector } from '@src/app2/app/store';
 import { postSelectors } from '@src/app2/screens/posts/redux';
 import { userSelectors } from '@src/app2/screens/users/redux';
