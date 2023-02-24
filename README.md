@@ -5,8 +5,9 @@
 <br/>
 
 - app1 - context, hooks
-- app2 - redux-toolkit
-- app3 - react-query
+- app2 - redux-toolkit (rtk)
+- app3 - rtk-query
+- app4 - react-query
 
 <br/>
 <br/>

@@ -1,11 +1,12 @@
 import React, { memo, useState, useLayoutEffect } from 'react';
 import { StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { RootStackScreenProps } from '@src/app3/navigation/types';
-import Empty from '@src/app3/components/Empty';
-import Loading from '@src/app3/components/Loading';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { RootStackScreenProps } from '@src/app4/navigation/types';
+import Empty from '@src/app4/components/Empty';
+import Loading from '@src/app4/components/Loading';
 import { User } from './types';
-import { useFetchUsersQuery, useDeleteUserMutation } from './api';
+import * as api from './api';
 
 interface ItemProps {
   user: User;
@@ -42,18 +43,39 @@ const Item = memo(({ user, onDelete }: ItemProps) => {
 });
 
 const UserList = ({ navigation }: RootStackScreenProps<'UserList'>) => {
-  const { data, error, isLoading } = useFetchUsersQuery();
-  const [deleteUser] = useDeleteUserMutation();
+  const queryClient = useQueryClient();
+  const { isLoading, error, data } = useQuery(['users'], api.fetchUsers);
+
+  const mutation = useMutation({
+    mutationFn: api.deleteUser,
+    onMutate: async (id: string) => {
+      // optimistically remove the to-be-deleted user from the list
+      await queryClient.cancelQueries(['users']);
+      const users = queryClient.getQueryData<User[]>(['users']);
+      if (!users) {
+        return;
+      }
+      // remove the user from the cache so it immediately disappears from the UI
+      queryClient.setQueryData(
+        ['users'],
+        users.filter((user) => user.id !== id)
+      );
+    },
+    onSuccess: () => {
+      // Invalidate and refetch
+      // queryClient.invalidateQueries({ queryKey: ['users'] });
+    },
+  });
+
+  const onDelete = (id: string) => {
+    mutation.mutate(id);
+  };
 
   const userCount = data?.length || 0;
 
   useLayoutEffect(() => {
     navigation.setOptions({ headerTitle: `Users (${userCount})` });
   }, [navigation, userCount]);
-
-  const onDelete = async (id: string) => {
-    await deleteUser(id);
-  };
 
   if (isLoading) {
     return <Loading />;

@@ -1,23 +1,33 @@
-import axios from 'axios';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { Post, PostCreate } from './types';
 
-const baseURL = 'https://jsonplaceholder.typicode.com';
+const baseUrl = 'https://jsonplaceholder.typicode.com';
 
-export const fetchPosts = async (page: number) => {
-  try {
-    const res = await axios.get<Post[]>(`${baseURL}/posts?_page=${page}&_limit=20`);
-    return res.data;
-  } catch (err) {
-    console.log(err);
-    // return [];
-    throw err;
-  }
-};
+export const postApi = createApi({
+  reducerPath: 'postApi',
+  baseQuery: fetchBaseQuery({ baseUrl }),
+  tagTypes: ['Posts'],
+  endpoints: (builder) => ({
+    fetchPosts: builder.query<Post[], number>({
+      // query: () => ({ url: '/posts' }),
+      query: (page) => {
+        console.log('fetching posts');
+        return `/posts?_page=${page}&_limit=20`;
+      },
+      providesTags: (result = []) => [
+        ...result.map(({ id }) => ({ type: 'Posts', id } as const)),
+        { type: 'Posts' as const, id: 'LIST' },
+      ],
+    }),
+    createPost: builder.mutation<Post, PostCreate>({
+      query: (body) => ({
+        url: '/posts',
+        method: 'POST',
+        body,
+      }),
+      invalidatesTags: [{ type: 'Posts', id: 'LIST' }],
+    }),
+  }),
+});
 
-export const createPost = async (params: PostCreate) => {
-  try {
-    await axios.post(`${baseURL}/posts`, params);
-  } catch (err) {
-    console.log(err);
-  }
-};
+export const { useFetchPostsQuery, useCreatePostMutation } = postApi;

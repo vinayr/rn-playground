@@ -1,15 +1,16 @@
 import React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { Provider } from 'react-redux';
-import store from './app/store';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Navigator from './navigation/Navigator';
+
+const queryClient = new QueryClient();
 
 export default function App() {
   return (
     <SafeAreaProvider>
-      <Provider store={store}>
+      <QueryClientProvider client={queryClient}>
         <Navigator />
-      </Provider>
+      </QueryClientProvider>
     </SafeAreaProvider>
   );
 }

@@ -1,12 +1,12 @@
 import React, { memo, useState } from 'react';
 import { StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import Empty from '@src/app3/components/Empty';
-import Loading from '@src/app3/components/Loading';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import Empty from '@src/app4/components/Empty';
+import Loading from '@src/app4/components/Loading';
+import { User } from '@src/app4/screens/users/types';
 import { Post } from './types';
-import { useFetchPostsQuery } from './api';
-import { User } from '@src/app3/screens/users/types';
-import { useFetchUsersQuery } from '@src/app3/screens/users/api';
+import * as api from './api';
 
 interface ItemProps {
   post: Post;
@@ -36,10 +36,10 @@ const Item = memo(({ post, user }: ItemProps) => {
 });
 
 const PostList = () => {
-  const { data: posts, error, isLoading } = useFetchPostsQuery(1);
-  const { data: users } = useFetchUsersQuery();
+  const queryClient = useQueryClient();
+  const { isLoading, error, data } = useQuery(['posts'], () => api.fetchPosts(1));
 
-  const postCount = posts?.length || 0;
+  const users = queryClient.getQueryData<User[]>(['users']);
 
   const getUser = (postId: string) => {
     const user = users?.find((u) => u.id === postId);
@@ -54,15 +54,15 @@ const PostList = () => {
     return <Empty text="Something went wrong" />;
   }
 
-  if (!postCount) {
+  if (!data?.length) {
     return <Empty text="No Posts" />;
   }
 
-  console.log('PostList', postCount);
+  console.log('PostList', data.length);
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
-        data={posts}
+        data={data}
         renderItem={({ item }) => <Item post={item} user={getUser(item.id)} />}
         keyExtractor={(item) => item.id}
         //

@@ -1,39 +1,48 @@
-import axios from 'axios';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { User, UserCreate } from './types';
 
-const baseURL = 'https://jsonplaceholder.typicode.com';
+const baseUrl = 'https://jsonplaceholder.typicode.com';
 
-export const fetchUsers = async () => {
-  try {
-    const res = await axios.get<User[]>(`${baseURL}/users`);
-    return res.data;
-  } catch (err) {
-    console.log(err);
-    // return [];
-    throw err;
-  }
-};
+export const userApi = createApi({
+  reducerPath: 'userApi',
+  baseQuery: fetchBaseQuery({ baseUrl }),
+  tagTypes: ['Users'],
+  endpoints: (builder) => ({
+    fetchUsers: builder.query<User[], void>({
+      // query: () => ({ url: '/users' }),
+      query: () => {
+        console.log('fetching users');
+        return '/users';
+      },
+      providesTags: (result = []) => [
+        ...result.map(({ id }) => ({ type: 'Users', id } as const)),
+        { type: 'Users' as const, id: 'LIST' },
+      ],
+    }),
+    createUser: builder.mutation<User, UserCreate>({
+      query: (body) => ({
+        url: '/users',
+        method: 'POST',
+        body,
+      }),
+      invalidatesTags: [{ type: 'Users', id: 'LIST' }],
+    }),
+    updateUser: builder.mutation<void, { id: string; body: UserCreate }>({
+      query: ({ id, body }) => ({
+        url: `/users/${id}`,
+        method: 'PUT',
+        body,
+      }),
+      invalidatesTags: (_, _err, { id }) => [{ type: 'Users', id }],
+    }),
+    deleteUser: builder.mutation<void, string>({
+      query: (id) => ({
+        url: `/users/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: (_, _err, id) => [{ type: 'Users', id }],
+    }),
+  }),
+});
 
-export const createUser = async (params: UserCreate) => {
-  try {
-    await axios.post(`${baseURL}/users`, params);
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-export const updateUser = async (id: string, params: UserCreate) => {
-  try {
-    await axios.put(`${baseURL}/users/${id}`, params);
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-export const deleteUser = async (id: string) => {
-  try {
-    await axios.delete(`${baseURL}/users/${id}`);
-  } catch (err) {
-    console.log(err);
-  }
-};
+export const { useFetchUsersQuery, useCreateUserMutation, useUpdateUserMutation, useDeleteUserMutation } = userApi;
